@@ -95,6 +95,9 @@ const Header = (props) => {
             </div>
           </div>
         )}
+        <a href="/ChatGpt">
+          <img className="chatgpt-icon" src="https://static.vecteezy.com/system/resources/previews/018/764/128/original/chatgpt-logo-open-ai-icon-with-chatbot-artificial-intelligence-openai-chatbot-icon-chatgpt-openai-icon-artificial-intelligence-smart-ai-virtual-smart-assistant-bot-free-vector.jpg" alt="Chat GPT"/>
+        </a>
         {!totalQuantity ? (
           <div className="header__cart" onClick={() => dispatch(sidebarOpen())}>
             <i className="fa fa-shopping-basket" aria-hidden="true"></i>

@@ -9,6 +9,7 @@ import ProductDetails from "./pages/ProductDetails/ProductDetails";
 import SignIn from "./components/SignIn/SignIn";
 import Checkout from "./pages/Chekout/Checkout";
 import UserForm from './pages/UserForm/UserForm'
+import ChatGpt from "./pages/ChatGpt/ChatGpt"
 
 import "./App.css";
 import Orders from "./pages/Orders/Orders";
@@ -40,6 +41,7 @@ const App = () => {
         <Switch>
           <Route path="/" exact component={UserForm} />
           <Route path="/home"  component={Home} />
+          <Route path="/ChatGpt" component={ChatGpt} />
           <Route path="/product/:id" component={Home} />
           <Route path="/checkout" component={Checkout} />
           <PrivateRoute path="/orders" component={Orders} />

@@ -164,3 +164,10 @@ a.brand {
     margin-right: 0;
   }
 }
+
+.chatgpt-icon {
+  margin-top: 1rem;
+  width: 30px;
+  height: 30px;
+  /* add any other styling you want */
+}
