@@ -37,4 +37,12 @@ export const filteredProducts = (value) => (dispatch) => {
   });
 };
 
+export const chatGPTSuggestion = (data) => (dispatch) => {
+  dispatch({
+    type: actionTypes.CHAT_GPT_SUGGESTION,
+    payload: data,
+  });
+  localStorage.setItem("chatGPTSuggestion", JSON.stringify(data));
+};
+
 export default vegetablesList;

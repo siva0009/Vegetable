@@ -17,7 +17,7 @@ const Home = (props) => {
   const wishlist = useSelector((state) => state.wishlist);
   const searchTerm = useSelector((state) => state.searchFilter);
 
-  const { loading, error, vegetables } = vegetablesData;
+  const { loading, error, vegetables, chatGPTSuggestion } = vegetablesData;
   const history = useHistory();
 
 
@@ -81,12 +81,20 @@ const Home = (props) => {
       ) : error ? (
         <ErrorBox varient="error">{error}</ErrorBox>
       ) : (
+        
+      <div>
+        <div>
+          <h1>ChatGPT Analysis of Health condition and Suggested vegetables</h1>
+          <p id="reponse">{chatGPTSuggestion}</p>
+        </div> 
+      
         <div className="row center">
           {filterProducts &&
             filterProducts.map((vegetable) => (
               <Product key={vegetable._id} product={vegetable} />
             ))}
         </div>
+      </div>
       )}
       <Sidebar />
     </Fragment>

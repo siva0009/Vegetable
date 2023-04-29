@@ -3,7 +3,8 @@ import { withRouter } from "react-router-dom";
 import './UserForm.css'; // import CSS file for styling
 import { useHistory } from 'react-router-dom';
 import axios from "axios";
-
+import {chatGPTSuggestion} from '../../store/actions/actionCreators/productsListAction'
+import { useDispatch } from "react-redux";
 
 const UserForm = (props) => {
     const [name, setName] = useState('');
@@ -18,9 +19,9 @@ const UserForm = (props) => {
     const [temperature, setTemperature] = useState('');
     const [symptoms, setSymptoms] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const dispatch = useDispatch();
 
     const history = useHistory();
-    const [response, setResponse] = useState('');
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -42,7 +43,7 @@ const UserForm = (props) => {
         var prompt = 'List of vegetables for ';
         formData.forEach(function(value, key){
             if(value) {
-                prompt += key + ' ' +value
+                prompt += key + ' ' +value + ' '
             }
         });
 
@@ -54,12 +55,11 @@ const UserForm = (props) => {
             .then((res) => {
                 // Update the response state with the server's response
                 console.log(res.data)
-                setResponse(res.data);
+                dispatch(chatGPTSuggestion(res.data));
                 setIsSubmitting(false);
-                setTimeout(() => {
+                // setTimeout(() => {
                     history.push('/home');
-        
-                }, 30000);
+                // }, 2000);
             })
             .catch((err) => {
                 console.error(err);
@@ -122,15 +122,6 @@ const UserForm = (props) => {
                 <button type="submit">Analyze data</button>
 
                </form>
-               {
-                response ? 
-                <div>
-                    <h1>ChatGPT Analysis of Health condition and Suggested vegetables</h1>
-                <p id="reponse">{response}</p>
-                {/* <button onClick={() =>{history.push('/home');}}>Navigate to shopping</button> */}
-                </div>: null
-               }
-               
                </div>
     );
 }
