@@ -7,6 +7,8 @@ const vegetablesList = () => async (dispatch, getState) => {
   });
   try {
     const { data } = await axios.get("/api/products");
+    let chatSuggestionList = []
+    const { chatGPTSuggestion } = getState().products;
 
     if (localStorage.getItem("cartItems")) {
       const products = getState().cart.cartData.vegetablesCart;
@@ -21,9 +23,18 @@ const vegetablesList = () => async (dispatch, getState) => {
       });
     }
 
+    if(chatGPTSuggestion){
+      chatSuggestionList = data.filter((d) => {
+        return chatGPTSuggestion.includes(d.name)
+      })
+    }
+    else {
+      chatSuggestionList = data
+    }
+
     dispatch({
       type: actionTypes.VEGETABLE_LIST_SUCCESS,
-      payload: data,
+      payload: chatSuggestionList,
     });
   } catch (error) {
     dispatch({ type: actionTypes.VEGETABLE_LIST_FAIL, payload: error.message });
