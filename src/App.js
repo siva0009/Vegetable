@@ -8,6 +8,7 @@ import BadRequest from "./pages/BadRequest";
 import ProductDetails from "./pages/ProductDetails/ProductDetails";
 import SignIn from "./components/SignIn/SignIn";
 import Checkout from "./pages/Chekout/Checkout";
+import UserForm from './pages/UserForm/UserForm'
 
 import "./App.css";
 import Orders from "./pages/Orders/Orders";
@@ -18,9 +19,14 @@ const App = () => {
   const location = useLocation();
 
   const getHeader = () => {
+    console.log(location.pathname,'nammee')
     if (location.pathname === "/checkout") {
       return <HeaderCheckout />;
-    } else {
+    }
+    else if (location.pathname === "/") {
+      return null;
+    }
+    else {
       return <Header />;
     }
   };
@@ -32,7 +38,8 @@ const App = () => {
       {getHeader()}
       <main>
         <Switch>
-          <Route path="/" exact component={Home} />
+          <Route path="/" exact component={UserForm} />
+          <Route path="/home"  component={Home} />
           <Route path="/product/:id" component={Home} />
           <Route path="/checkout" component={Checkout} />
           <PrivateRoute path="/orders" component={Orders} />

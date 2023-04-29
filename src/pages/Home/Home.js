@@ -7,6 +7,7 @@ import vegetablesList from "../../store/actions/actionCreators/productsListActio
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Product from "../../container/Product/Product";
 import { signInOpen } from "../../store/actions/actionCreators/signInAction";
+import { useHistory } from 'react-router-dom';
 
 const Home = (props) => {
   const dispatch = useDispatch();
@@ -17,6 +18,21 @@ const Home = (props) => {
   const searchTerm = useSelector((state) => state.searchFilter);
 
   const { loading, error, vegetables } = vegetablesData;
+  const history = useHistory();
+
+
+  useEffect(() => {
+    const unblock = history.block((location) => {
+      if (location.pathname === '/') {
+        return false; // Prevent navigation to the previous page
+      }
+      return true;
+    });
+
+    return () => {
+      unblock(); // Re-enable navigation when the component is unmounted
+    };
+  }, [history]);
 
   useEffect(() => {
     dispatch(vegetablesList());
