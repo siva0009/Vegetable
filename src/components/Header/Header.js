@@ -38,9 +38,7 @@ const Header = (props) => {
       }
     >
       <div>
-        <Link className="brand" to="/">
-          VeggiesShop
-        </Link>
+        <Link className="brand" to="/">Nutri Native</Link>
       </div>
       {history.location.pathname === "/" ? (
         <div className="searchbox">

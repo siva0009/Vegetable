@@ -15,9 +15,7 @@ const HeaderCheckout = () => {
   return (
     <header className="row header-checkout">
       <div>
-        <Link className="brand" to="/">
-          VeggiesShop
-        </Link>
+        <Link className="brand" to="/">Nutri Native</Link>
       </div>
       <div className="header-item header-item--checkout-promise">
         <div className="checkout-promise-item">

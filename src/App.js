@@ -15,6 +15,9 @@ import "./App.css";
 import Orders from "./pages/Orders/Orders";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import Wishlist from "./pages/Wishlist/Wishlist";
+// import img from "./img/img.png"; 
+import Background from './img/dan-gold-4_jhDO54BYg-unsplash.jpg';
+
 
 const App = () => {
   const location = useLocation();
@@ -35,7 +38,9 @@ const App = () => {
   const isModal = location.state && location.state.modal;
 
   return (
-    <div className="grid-container">
+    <div className="grid-container" style={{ backgroundImage: `url(${Background})`,
+    backgroundRepeat: 'repeat', 
+    backgroundAttachment:'scroll'}}>
       {getHeader()}
       <main>
         <Switch>
