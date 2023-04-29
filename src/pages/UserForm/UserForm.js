@@ -2,6 +2,7 @@ import React, { Fragment, useState } from "react";
 import { withRouter } from "react-router-dom";
 import './UserForm.css'; // import CSS file for styling
 import { useHistory } from 'react-router-dom';
+import axios from "axios";
 
 
 const UserForm = (props) => {
@@ -19,16 +20,11 @@ const UserForm = (props) => {
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     const history = useHistory();
+    const [response, setResponse] = useState('');
 
     const handleSubmit = (event) => {
         event.preventDefault();
         setIsSubmitting(true);
-
-        setTimeout(() => {
-            setIsSubmitting(false);
-            history.push('/home');
-
-        }, 2000);
         // Send form data to server or API endpoint using fetch API
         const formData = new FormData();
         formData.append('name', name);
@@ -43,7 +39,31 @@ const UserForm = (props) => {
         formData.append('temperature', temperature);
         formData.append('symptoms', symptoms);
 
-        console.log(formData, 'dataa');
+        var prompt = 'List of vegetables for ';
+        formData.forEach(function(value, key){
+            if(value) {
+                prompt += key + ' ' +value
+            }
+        });
+
+        console.log(prompt, 'prompt');
+
+         // Send a request to the server with the prompt
+        axios
+            .post("/chat", { prompt })
+            .then((res) => {
+                // Update the response state with the server's response
+                console.log(res.data)
+                setResponse(res.data);
+                setIsSubmitting(false);
+                setTimeout(() => {
+                    history.push('/home');
+        
+                }, 30000);
+            })
+            .catch((err) => {
+                console.error(err);
+            });
     }
 
     return (
@@ -99,9 +119,18 @@ const UserForm = (props) => {
                     Symptoms:
                     <textarea rows="4" value={symptoms} onChange={event => setSymptoms(event.target.value)} />
                 </label>
-                <button type="submit">Submit</button>
+                <button type="submit">Analyze data</button>
 
                </form>
+               {
+                response ? 
+                <div>
+                    <h1>ChatGPT Analysis of Health condition and Suggested vegetables</h1>
+                <p id="reponse">{response}</p>
+                {/* <button onClick={() =>{history.push('/home');}}>Navigate to shopping</button> */}
+                </div>: null
+               }
+               
                </div>
     );
 }
