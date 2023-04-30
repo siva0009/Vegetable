@@ -39,7 +39,6 @@ const UserForm = (props) => {
         formData.append('heartRate', heartRate);
         formData.append('respiratoryRate', respiratoryRate);
         formData.append('temperature', temperature);
-        formData.append('symptoms', symptoms);
 
         var prompt = 'List of vegetables for ';
         formData.forEach(function(value, key){
