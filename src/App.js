@@ -40,7 +40,8 @@ const App = () => {
   return (
     <div className="grid-container" style={{ backgroundImage: `url(${Background})`,
     backgroundRepeat: 'repeat', 
-    backgroundAttachment:'scroll'}}>
+    backgroundAttachment:'scroll',
+    height:1300}}>
       {getHeader()}
       <main>
         <Switch>

@@ -17,7 +17,8 @@ const UserForm = (props) => {
     const [heartRate, setHeartRate] = useState('');
     const [respiratoryRate, setRespiratoryRate] = useState('');
     const [temperature, setTemperature] = useState('');
-    const [symptoms, setSymptoms] = useState('');
+    const [diabetes, setDiabetes] = useState('');
+
     const [isSubmitting, setIsSubmitting] = useState(false);
     const dispatch = useDispatch();
 
@@ -75,18 +76,7 @@ const UserForm = (props) => {
             )}
 
             <form onSubmit={handleSubmit}>
-                <label>
-                    Name:
-                    <input type="text" value={name} onChange={event => setName(event.target.value)} />
-                </label>
-                <label>
-                    Email:
-                    <input type="email" value={email} onChange={event => setEmail(event.target.value)} />
-                </label>
-                <label>
-                    Phone Number:
-                    <input type="tel" value={phone} onChange={event => setPhone(event.target.value)} />
-                </label>
+                
                 <label>
                     BMI:
                     <input type="number" step="0.01" value={bmi} onChange={event => setBmi(event.target.value)} />
@@ -101,25 +91,17 @@ const UserForm = (props) => {
                 </label>
                 <label>
                     Blood Pressure:
-                    <input type="text" value={bloodPressure} onChange={event => setBloodPressure(event.target.value)} />
+                    <input type="text"  style={{width:'100%',paddingLeft:0}} value={bloodPressure} onChange={event => setBloodPressure(event.target.value)} />
                 </label>
                 <label>
                     Heart Rate:
                     <input type="number" value={heartRate} onChange={event => setHeartRate(event.target.value)} />
                 </label>
                 <label>
-                    Respiratory Rate:
-                    <input type="number" value={respiratoryRate} onChange={event => setRespiratoryRate(event.target.value)} />
+                     Diabetes:
+                    <input type="number" value={diabetes} onChange={event => setDiabetes(event.target.value)} />
                 </label>
-                <label>
-                    Temperature:
-                    <input type="number" step="0.01" value={temperature} onChange={event => setTemperature(event.target.value)} />
-                </label>
-                <label>
-                    Symptoms:
-                    <textarea rows="4" value={symptoms} onChange={event => setSymptoms(event.target.value)} />
-                </label>
-                <button type="submit">Analyze data</button>
+                <button  type="submit">Analyze data</button>
 
                </form>
                </div>
